@@ -25,11 +25,18 @@ print("Type north, south, east, west, or exit to quit.\n")
 #   5. Continue until the required exit condition is reached.
 
 while current_room != "exit":
+
+    # DEBUG: Show current room before processing
+    print(f"[DEBUG] Current room before command: {current_room}")
+    
     # Step 1: Display the current room
     print(f"You are currently in the {current_room}.")
 
     # Step 2: Prompt for a command
     command = input("Enter your command: ").lower().strip()
+
+    # DEBUG: Show the raw command entered
+    print(f"[DEBUG] Command entered: {command}")
 
     # Step 3: Handle exit command
     if command == "exit":
@@ -38,11 +45,20 @@ while current_room != "exit":
 
     # Step 4: Handle movement commands
     elif command in ["north", "south", "east", "west"]:
+
+        # DEBUG: Show valid directions from this room
+        print(f"[DEBUG] Valid directions from {current_room}: {list(rooms[current_room].keys())}")
+        
         if command in rooms[current_room]:
             new_room = rooms[current_room][command]
+
+            # DEBUG: Show the room we are about to move into
+            print(f"[DEBUG] Moving from {current_room} to {new_room}")
+            
             print(f"You move {command} and enter the {new_room}.\n")
             current_room = new_room
         else:
+            print("[DEBUG] Movement invalid for this room.")
             print("You cannot go that way.\n")
 
     # Step 5: Handle invalid input
